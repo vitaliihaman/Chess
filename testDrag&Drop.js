@@ -1,4 +1,3 @@
-
 var square = document.getElementById("myTestDiv");
 
 square.addEventListener("mousedown", fn);
@@ -14,7 +13,9 @@ function fn(e) {
     var coords = getCoords(element),
         shiftX = e.pageX - coords.left,
         shiftY = e.pageY - coords.top;
+
     element.style.zIndex = 1000;
+
     function moveAt(e) {
         element.style.left = e.pageX - shiftX + "px";
         element.style.top = e.pageY - shiftY + "px";
@@ -22,6 +23,7 @@ function fn(e) {
 
     document.addEventListener("mousemove", moveAt);
     element.addEventListener("mouseup", drop);
+
     function drop(e) {
         document.removeEventListener("mousemove", moveAt)
     }

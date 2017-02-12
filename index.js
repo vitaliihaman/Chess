@@ -1,3 +1,4 @@
+/*
 var chessFig = {
     0 : "bCastle.ico",
     1 : "bKnight.ico",
@@ -57,10 +58,11 @@ function createChessTable(row, col) {
             }
             if(!img.src) {
                 img = document.createElement("DIV");
-            } else {
+            } /!*else {
                 img.addEventListener("mousedown", fn);
-            }
+            }*!/
             img.className = "imgFig";
+            img.classList.add("draggable");
             td.appendChild(img);
 
             if((i%2===0 && j%2===1) || (i%2===1 && j%2===0)){
@@ -76,11 +78,11 @@ function createChessTable(row, col) {
     }
     table.className = "table";
     img.src = chessFigPath + chessFig["wPawn"];
-   /* table.onclick = function (e){
+   /!* table.onclick = function (e){
         var target = e.target;
         if(target.tagName != "TD") return;
         change(target);
-    };*/
+    };*!/
 
     wrapper.appendChild(table);
 
@@ -117,10 +119,27 @@ function fn(e) {
     }
 }
 
+//обработчик mousedown
+var dragObject = {};
+function getElem(e) {
+    if(e.which != 1){
+        return ;
+    }
+    var elem = e.target;
+    if(!elem) return;
+    dragObject.elem = elem;
+    dragObject.downX = e.pageX;
+    dragObject.downY = e.pageY;
+    console.log(elem);
+}
+document.addEventListener("click", getElem);
+
+
+
 
 createChessTable(8,8);
 
-//alal
 // dropable
 // canvas
 
+*/
