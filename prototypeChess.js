@@ -29,6 +29,7 @@ Game.prototype.initialize = function () {
     this.createBoard();
     this.createFigure();
     this.drawFigure();
+   // this.moveFigure();
 };
 
 Game.prototype.createPlayers = function () {
@@ -43,7 +44,7 @@ Game.prototype.createBoard = function () {
 
 Game.prototype.drawFigure = function () {
     var board = $("tbody");
-    // console.log(board);
+    console.log(board);
 
     for (var i = 0; i < this.figures.length; i++) {
         var fig = this.figures[i],
@@ -52,10 +53,11 @@ Game.prototype.drawFigure = function () {
             x = fig.x,
             row = board.children('tr')[y],
             cell = $(row).find('td')[x];
-        console.log(img);
         $(cell).append(img);
 
-
+        $(img).click(function (event) {
+            return event;
+        });
         /* $(cell).css({
          backgroundImage : " url('"+ fig.picture + " ')",
          backgroundRepeat: "no-repeat",
@@ -95,7 +97,7 @@ Game.prototype.createFigure = function () {
         this.figures.push(fig);
         this.player2.figures.push(fig);
     }
-    //  console.log(this.figures);
+    console.log(this.figures);
 };
 
 
@@ -132,10 +134,12 @@ Board.prototype.drawBoard = function () {
             }
 
             row.append(col);
+
         }
         table.append(row);
     }
     wrapper.append(table);
+var tdd = $("td")
 };
 
 
@@ -167,4 +171,17 @@ function Player(name) {
 }
 
 
+
+function getCoords(elem) { // кроме IE8-
+    var box = elem.getBoundingClientRect();
+
+    return {
+        top: box.top + pageYOffset,
+        left: box.left + pageXOffset
+    };
+
+}
+
 var game = new Game();
+
+
